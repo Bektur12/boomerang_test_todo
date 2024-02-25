@@ -7,7 +7,7 @@ import {
 	updateTodoItem,
 } from '../api/todos/todos'
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
-import { WithoutId } from '~/types'
+import { Todo, TodoItem } from '~/types'
 
 export const useTodosQuery = () =>
 	useQuery({
@@ -23,12 +23,12 @@ export const useTodosByIdQuery = (todoId: string) =>
 		refetchOnWindowFocus: false,
 	})
 
-export const useUpdateTodoMutation = (todoId: string) => {
+export const useUpdateTodoMutation = () => {
 	const queryClient = useQueryClient()
 
 	return useMutation({
-		mutationFn: (data: { todo: any }) =>
-			updateTodoItem(Number(todoId), data.todo),
+		mutationFn: (data: { todo: Todo; todoId: string }) =>
+			updateTodoItem(Number(data.todoId), data.todo),
 		onSuccess: () => {
 			queryClient.invalidateQueries({ queryKey: [QUERY_KEY] })
 		},
@@ -50,7 +50,7 @@ export const useCreateTodoMutation = () => {
 	const queryClient = useQueryClient()
 
 	return useMutation({
-		mutationFn: (body: WithoutId) => addTodoItem(body),
+		mutationFn: (body: TodoItem) => addTodoItem(body),
 		onSuccess: () => {
 			queryClient.invalidateQueries({ queryKey: [QUERY_KEY] })
 		},

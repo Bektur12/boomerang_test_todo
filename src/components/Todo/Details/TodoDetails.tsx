@@ -1,5 +1,5 @@
 import React from 'react'
-import { useFormContext } from 'react-hook-form'
+import { useForm, useFormContext } from 'react-hook-form'
 import { Button } from '~/components/UI/Button/Button'
 import { Input } from '~/components/UI/Input/Input'
 import { Textarea } from '~/components/UI/TextArea/TextArea'
@@ -8,10 +8,11 @@ import { Todo } from '~/types'
 type Details = {
 	title: string
 	onSubmit: (formData: Todo) => void
+	todo?: Todo
 }
 
-export const TodoDetails = ({ title, onSubmit }: Details) => {
-	const methods = useFormContext<Todo>()
+export const TodoDetails = ({ title, onSubmit, todo }: Details) => {
+	const methods = useForm<Todo>({ values: { ...(todo as Todo) } })
 
 	return (
 		<form

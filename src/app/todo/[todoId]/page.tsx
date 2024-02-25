@@ -13,9 +13,9 @@ const Page = () => {
 
 	const deleteTodo = useDeleteTodoMutation()
 
-	const handleDeleteTodo = async () => {
+	const handleDeleteTodo = () => {
 		try {
-			await deleteTodo.mutateAsync(Number(todoId)).then(() => {
+			deleteTodo.mutateAsync(Number(todoId)).then(() => {
 				router.back()
 				toast.success('Успешно удален!')
 			})

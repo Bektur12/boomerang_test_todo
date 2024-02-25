@@ -1,8 +1,9 @@
 'use client'
 import React, { useEffect, useState } from 'react'
 import { shuffleArray } from '~/utils/helpers/shuffleArray'
-import Card, { Icard } from '~/components/Game/Card/Card'
+import { Icard } from '~/components/Game/Card/Card'
 import { CARDS } from '~/utils/constants/constants'
+import { GameList } from '~/components/Game/GameList'
 
 interface ISelectedCard extends Icard {
 	index: number
@@ -87,17 +88,7 @@ const Game = () => {
 	return (
 		<div className='flex justify-center w-590 flex-col mt-80'>
 			<h1 className='text-center'>Memory Game</h1>
-			<div className='h-36 p-20  grid grid-cols-4 grid-rows-4 justify-center gap-20'>
-				{cards.map((card, i) => {
-					return (
-						<Card
-							key={i}
-							onClick={() => onSelectCard(card, i)}
-							{...card}
-						/>
-					)
-				})}
-			</div>
+			<GameList cards={cards} onSelectCard={onSelectCard} />
 		</div>
 	)
 }

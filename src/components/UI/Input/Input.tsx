@@ -2,7 +2,7 @@ import * as React from 'react'
 import { cn } from '~/lib/utils'
 import { FieldError } from 'react-hook-form'
 import Label from './Label'
-import ErrorText from '../error-text'
+import ErrorText from '../ErrorText/error-text'
 
 export interface InputProps
 	extends React.InputHTMLAttributes<HTMLInputElement> {

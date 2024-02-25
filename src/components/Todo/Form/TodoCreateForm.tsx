@@ -9,25 +9,20 @@ import { useCreateTodoMutation } from '~/hooks/queries'
 
 interface Props {}
 
-export const TodoForm: React.FC<Props> = ({}) => {
-	const methods = useForm<Todo>()
+export const TodoCreateForm: React.FC<Props> = ({}) => {
 	const createTodo = useCreateTodoMutation()
 	const router = useRouter()
 
-	const submitHandler = async (formData: Todo) => {
+	const submitHandler = (formData: Todo) => {
 		try {
-			await createTodo.mutateAsync({ ...formData }).then(() => {
+			createTodo.mutateAsync({ ...formData }).then(() => {
 				router.push('/todo')
-				toast.success('Успешно Добавлен')
+				toast.success('Успешно добавлен')
 			})
 		} catch (e) {
 			toast.error(getServerError(e))
 		}
 	}
 
-	return (
-		<FormProvider {...methods}>
-			<TodoDetails title='Create Todo' onSubmit={submitHandler} />
-		</FormProvider>
-	)
+	return <TodoDetails title='Create Todo' onSubmit={submitHandler} />
 }

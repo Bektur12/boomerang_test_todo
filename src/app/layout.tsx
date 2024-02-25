@@ -1,30 +1,27 @@
-'use client'
-import React, { FC, useState } from 'react'
+import React, { FC } from 'react'
 import Header from '~/layout/Header'
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
 import { LayoutProps } from '~/types'
 import '../styles/globals.scss'
-import { Toaster } from '~/components/UI/sonner'
+import { Toaster } from '~/components/UI/Sonner/sonner'
+import ReactQueryRegistry from '~/appConfig/providers/react-query.registry'
 
 const RootLayout: FC<LayoutProps> = ({ children }) => {
-	const [client] = useState(new QueryClient())
-
 	return (
-		<QueryClientProvider client={client}>
-			<html>
-				<head>
-					<title>Todo App</title>
-				</head>
-				<body>
+		<html>
+			<head>
+				<title>Todo App</title>
+			</head>
+			<body>
+				<ReactQueryRegistry>
 					<Toaster />
 					<main>
 						<Header />
 						{children}
 					</main>
-				</body>
-			</html>
-		</QueryClientProvider>
+				</ReactQueryRegistry>
+			</body>
+		</html>
 	)
 }
 

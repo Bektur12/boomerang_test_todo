@@ -6,7 +6,7 @@ export type Todo = {
 	id: number
 }
 
-export type WithoutId = Omit<Todo, 'id'>
+export type TodoItem = Omit<Todo, 'id'>
 
 export type LayoutProps = {
 	children: ReactNode

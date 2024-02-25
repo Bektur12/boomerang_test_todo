@@ -10,34 +10,24 @@ import { getServerError } from '~/utils/helpers/error.helper'
 
 export const TodoEditForm = () => {
 	const { todoId } = useParams<{ todoId: string }>()
-	const methods = useForm<Todo>()
 	const router = useRouter()
 
-	const updateTodo = useUpdateTodoMutation(todoId)
+	const updateTodo = useUpdateTodoMutation()
 
 	const { data: todo } = useTodosByIdQuery(todoId)
 
-	const onSubmit = async (formData: Todo) => {
+	const onSubmit = (formData: Todo) => {
 		try {
-			await updateTodo.mutateAsync({ todo: { ...formData } }).then(() => {
-				router.push('/todo')
-				toast.success('Успешно изменен')
-			})
+			updateTodo
+				.mutateAsync({ todo: { ...formData }, todoId })
+				.then(() => {
+					router.push('/todo')
+					toast.success('Успешно изменен')
+				})
 		} catch (e) {
 			toast.error(getServerError(e))
 		}
 	}
 
-	useEffect(() => {
-		if (todo) {
-			methods.setValue('description', todo.description)
-			methods.setValue('title', todo.title)
-		}
-	}, [todoId, todo])
-
-	return (
-		<FormProvider {...methods}>
-			<TodoDetails title='Edit Todo' onSubmit={onSubmit} />
-		</FormProvider>
-	)
+	return <TodoDetails title='Edit Todo' onSubmit={onSubmit} todo={todo} />
 }
