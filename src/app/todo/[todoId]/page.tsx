@@ -3,13 +3,14 @@ import { useParams, useRouter } from 'next/navigation'
 import { toast } from 'sonner'
 import { Button } from '~/components/UI/Button/Button'
 import { useDeleteTodoMutation, useTodosByIdQuery } from '~/hooks/queries'
+import { Todo } from '~/types'
 import { getServerError } from '~/utils/helpers/error.helper'
 
 const Page = () => {
 	const router = useRouter()
 	const { todoId } = useParams()
 
-	const { data: todo = {} } = useTodosByIdQuery(todoId as string)
+	const { data: todo = {} as Todo } = useTodosByIdQuery(todoId as string)
 
 	const deleteTodo = useDeleteTodoMutation()
 
