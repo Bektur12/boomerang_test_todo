@@ -1,0 +1,45 @@
+{
+	"name": "boomerang_test_todo",
+	"version": "0.1.0",
+	"private": true,
+	"scripts": {
+		"dev": "next dev",
+		"build": "next build",
+		"start": "next start",
+		"lint": "next lint",
+		"server": "json-server --watch db.json --port 4000"
+	},
+	"dependencies": {
+		"@radix-ui/react-slot": "^1.0.2",
+		"@tanstack/react-query": "^5.22.2",
+		"axios": "^1.6.7",
+		"class-variance-authority": "^0.7.0",
+		"classnames": "^2.5.1",
+		"clsx": "^2.1.0",
+		"embla-carousel-autoplay": "^8.0.0",
+		"embla-carousel-react": "^8.0.0",
+		"lucide-react": "^0.338.0",
+		"next": "14.1.0",
+		"next-themes": "^0.2.1",
+		"react": "^18",
+		"react-dom": "^18",
+		"react-hook-form": "^7.50.1",
+		"sass": "^1.71.1",
+		"sonner": "^1.4.1",
+		"tailwind-merge": "^2.2.1",
+		"tailwindcss-animate": "^1.0.7",
+		"zod": "^3.22.4"
+	},
+	"devDependencies": {
+		"@types/node": "^20",
+		"@types/react": "^18",
+		"@types/react-dom": "^18",
+		"autoprefixer": "^10.4.17",
+		"eslint": "^8",
+		"eslint-config-next": "14.1.0",
+		"json-server": "^1.0.0-alpha.23",
+		"postcss": "^8.4.35",
+		"tailwindcss": "^3.4.1",
+		"typescript": "^5"
+	}
+}
