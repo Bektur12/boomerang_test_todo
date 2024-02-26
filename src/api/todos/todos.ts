@@ -1,7 +1,7 @@
 import { Todo, TodoItem } from '~/types'
 import { baseAxios } from '../axios/baseAxios'
 
-export const getTodos = async (): Promise<Todo> => {
+export const getTodos = async (): Promise<Todo[]> => {
 	const response = await baseAxios.get('/todos')
 	return response.data
 }

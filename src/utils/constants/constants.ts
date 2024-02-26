@@ -1,7 +1,7 @@
 import { Icard } from '~/components/Game/Card/Card'
 
 export const QUERY_KEY = 'todos'
-export const BASE_URL = 'http://localhost:4000'
+export const BASE_URL = 'http://18.193.69.101'
 
 export const CARDS: Icard[] = [
 	{
